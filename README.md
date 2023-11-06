@@ -43,7 +43,7 @@ Welcome to the Blog API documentation. This API allows you to manage users, thei
 ## User Operations
 
 ### Create a User
-- **Endpoint**: `POST /sign-up`
+- **Endpoint**: `POST /users/sign-up`
 - **Description**: Create a new user with provided details. The following fields are required in the request body:
 
 ```json
@@ -52,12 +52,12 @@ Welcome to the Blog API documentation. This API allows you to manage users, thei
   "password": "password123",
   "username": "newuser",
   "country": "Australia",
-  "roleID": "user"
+  "roleID": "6549588fe09af6ea1ca2bfae"
 }
 ```
 
 #### Sign In
-- **Endpoint**: `POST /sign-in`
+- **Endpoint**: `POST /users/sign-in`
 - **Description**: Sign in an existing user by providing their email and password. Returns a JSON Web Token (JWT) for authentication.
 ```json
 {
@@ -68,7 +68,7 @@ Welcome to the Blog API documentation. This API allows you to manage users, thei
 - **Authentication**: None required.
 
 #### Refresh JWT
-- **Endpoint**: `POST /token-refresh`
+- **Endpoint**: `POST /users/token-refresh`
 - **Description**: Extend the validity of a user's JSON Web Token (JWT) by providing the existing token. Useful for keeping the token usable for a longer time.
 ```json
 {
