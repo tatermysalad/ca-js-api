@@ -114,12 +114,6 @@ databaseConnector(databaseURL)
     })
     .then(async () => {
         // Add new data into the database.
-        await Role.insertMany(roles);
-
-        console.log("New DB data created.");
-    })
-    .then(async () => {
-        // Add new data into the database.
         // Store the new documents as a variable for use later.
         let rolesCreated = await Role.insertMany(roles);
 
@@ -149,8 +143,3 @@ databaseConnector(databaseURL)
         mongoose.connection.close();
         console.log("DB seed connection closed.");
     })
-    .then(() => {
-        // Disconnect from the database.
-        mongoose.connection.close();
-        console.log("DB seed connection closed.");
-    });
