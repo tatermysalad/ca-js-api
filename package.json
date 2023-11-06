@@ -6,12 +6,13 @@
     "scripts": {
         "seed": "NODE_ENV=development WIPE=true node src/seeds.js",
         "start-dev": "NODE_ENV=development nodemon src/index.js",
-        "start-prod":"NODE_ENV=production node src/index.js"
+        "start-prod": "NODE_ENV=production node src/index.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@vercel/node": "^3.0.7",
         "bcrypt": "^5.1.1",
         "cors": "^2.8.5",
         "dotenv": "^16.3.1",
