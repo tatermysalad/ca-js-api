@@ -1,9 +1,9 @@
 # ca-js-api
-Building an API with Javascript
+Building an API with JavaScript
+
+Welcome to the Blog API documentation. This API allows you to manage users, their roles, and blog posts. It also provides authentication and authorisation for various operations. The base endpoint for testing is available at [https://js-api-tau.vercel.app](https://js-api-tau.vercel.app).
 
 ## Features
-
-To give the blog some decent complexity and sensible usefulness, we'll aim for these features:
 
 ### User accounts
 
@@ -36,24 +36,59 @@ Users have a role which can be checked for in other functions throughout the API
 
 ### User Operations
 
-#### Create a User
+# Blog API Documentation
+
+Welcome to the Blog API documentation. This API allows you to manage users, their roles, and blog posts. It also provides authentication and authorization for various operations. The base endpoint for testing is available at [https://js-api-tau.vercel.app](https://js-api-tau.vercel.app).
+
+## User Operations
+
+### Create a User
 - **Endpoint**: `POST /sign-up`
-- **Description**: Create a new user with provided details, including email, password, username, country, and role. The role must be specified in the request body.
-- **Authentication**: None required.
+- **Description**: Create a new user with provided details. The following fields are required in the request body:
+
+```json
+{
+  "email": "user@example.com",
+  "password": "password123",
+  "username": "newuser",
+  "country": "Australia",
+  "roleID": "user"
+}
+```
 
 #### Sign In
 - **Endpoint**: `POST /sign-in`
 - **Description**: Sign in an existing user by providing their email and password. Returns a JSON Web Token (JWT) for authentication.
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
 - **Authentication**: None required.
 
 #### Refresh JWT
 - **Endpoint**: `POST /token-refresh`
 - **Description**: Extend the validity of a user's JSON Web Token (JWT) by providing the existing token. Useful for keeping the token usable for a longer time.
+```json
+{
+  "jwt": "your-existing-jwt-token"
+}
+```
 - **Authentication**: Valid JWT required.
 
 #### Update User
 - **Endpoint**: `PUT /users/:userID`
 - **Description**: Update user information for the specified user ID. Only the user or an admin can update a user's details.
+```json
+{
+  "newUserData": {
+    "email": "updated@example.com",
+    "username": "updateduser",
+    "country": "New Zealand"
+  }
+}
+```
 - **Authentication**: Valid JWT with appropriate permissions required.
 
 #### Delete User
@@ -88,11 +123,27 @@ Users have a role which can be checked for in other functions throughout the API
 #### Create a Blog Post
 - **Endpoint**: `POST /posts`
 - **Description**: Create a new blog post by providing the post details, including title and content. The author of the post will be the user associated with the provided JWT.
+```json
+{
+  "postDetails": {
+    "title": "New Blog Post",
+    "content": "This is the content of the blog post."
+  }
+}
+```
 - **Authentication**: Valid JWT required.
 
 #### Update a Blog Post
 - **Endpoint**: `PUT /posts/:postID`
 - **Description**: Update an existing blog post with the specified post ID. Only the author or an admin can update the post.
+```json
+{
+  "newPostData": {
+    "title": "Updated Blog Post",
+    "content": "Updated content of the blog post."
+  }
+}
+```
 - **Authentication**: Valid JWT with appropriate permissions required.
 
 #### Delete a Blog Post
@@ -115,9 +166,9 @@ Users have a role which can be checked for in other functions throughout the API
 - **Description**: Retrieve information about a specific blog post using its post ID.
 - **Authentication**: None required.
 
-### Authorization
+### authorisation
 
-- The API utilizes JSON Web Tokens (JWT) for authentication and authorization.
+- The API utilizes JSON Web Tokens (JWT) for authentication and authorisation.
 - User roles, such as "admin," "regular," and "banned," determine access to certain endpoints.
 - Make sure to include the JWT in the headers for protected routes.
 
